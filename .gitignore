@@ -1,0 +1,28 @@
+# Agent instructions and local settings
+AGENTS.md
+.agents/
+.codex/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# Python bytecode and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Test, coverage, and analysis output
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Python build output
+/build/
+/dist/
+*.egg-info/
