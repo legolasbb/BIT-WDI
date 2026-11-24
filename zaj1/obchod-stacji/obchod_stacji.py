@@ -1,5 +1,5 @@
 def obchod_stacji(zlecenia, pojemnosc):
-    raise NotImplementedError
+    pass
 
 
 if __name__ == "__main__":

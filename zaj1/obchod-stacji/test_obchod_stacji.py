@@ -4,24 +4,24 @@ from runpy import run_path
 
 import pytest
 
-obchod_stacji = run_path(str(Path(__file__).with_name("solution.py")))["obchod_stacji"]
+obchod_stacji = run_path(str(Path(__file__).with_name("obchod_stacji.py")))["obchod_stacji"]
 
 
 @pytest.mark.parametrize(
     ("zlecenia", "pojemnosc", "wynik"),
     [
-        pytest.param([-2, -1, 2, 2], 4, (2, 4), id="przejscie-na-poczatek-trasy"),
-        pytest.param([3, 3], 4, (0, 1), id="remis"),
-        pytest.param([-1, 5], 4, (-1, 0), id="brak-mozliwego-startu"),
-        pytest.param([], 4, (-1, 0), id="brak-stacji"),
-        pytest.param([0, 0], 0, (0, 2), id="zlecenia-zerowe"),
-        pytest.param([2, -3, 0], 2, (2, 2), id="za-malo-modulow-do-oddania"),
-        pytest.param([4], 4, (0, 1), id="dokladna-pojemnosc"),
-        pytest.param([1, 9, 0, 1], 2, (2, 3), id="przejscie-przez-zero-do-blokady"),
-        pytest.param([0, 1, 0], 0, (2, 2), id="zerowa-pojemnosc-z-blokada"),
+        pytest.param([-2, -1, 2, 2], 4, (2, 4), id="wrap-around-to-first-station"),
+        pytest.param([3, 3], 4, (0, 1), id="tie-prefers-lowest-index"),
+        pytest.param([-1, 5], 4, (-1, 0), id="no-feasible-start"),
+        pytest.param([], 4, (-1, 0), id="no-stations"),
+        pytest.param([0, 0], 0, (0, 2), id="zero-orders"),
+        pytest.param([2, -3, 0], 2, (2, 2), id="insufficient-modules-to-deliver"),
+        pytest.param([4], 4, (0, 1), id="exact-capacity"),
+        pytest.param([1, 9, 0, 1], 2, (2, 3), id="wrap-around-before-blocked-order"),
+        pytest.param([0, 1, 0], 0, (2, 2), id="zero-capacity-with-blocked-order"),
     ],
 )
-def test_obchod_stacji(zlecenia, pojemnosc, wynik):
+def test_station_round_examples(zlecenia, pojemnosc, wynik):
     assert obchod_stacji(zlecenia, pojemnosc) == wynik
 
 
@@ -49,7 +49,7 @@ def _oczekiwany_wynik(zlecenia, pojemnosc):
     ("liczba_stacji", "pojemnosc"),
     [(200, 3), (500, 35), (1_000, 300)],
 )
-def test_obchod_stacji_losowe_trasy(ziarno, liczba_stacji, pojemnosc):
+def test_station_round_random_cases(ziarno, liczba_stacji, pojemnosc):
     generator = Random(ziarno)
     zlecenia = [generator.randint(-12, 12) for _ in range(liczba_stacji)]
     wynik = _oczekiwany_wynik(zlecenia, pojemnosc)
@@ -57,7 +57,7 @@ def test_obchod_stacji_losowe_trasy(ziarno, liczba_stacji, pojemnosc):
     assert obchod_stacji(zlecenia, pojemnosc) == wynik
 
 
-def test_obchod_stacji_pelne_okrazenie_z_jednego_startu():
+def test_station_round_full_lap_from_unique_start():
     generator = Random(2026)
     pojemnosc = 40
     ladunki = [0] + [generator.randint(1, pojemnosc) for _ in range(999)] + [0]
@@ -70,7 +70,7 @@ def test_obchod_stacji_pelne_okrazenie_z_jednego_startu():
     assert obchod_stacji(zlecenia, pojemnosc) == (start, len(zlecenia))
 
 
-def test_obchod_stacji_duzy_remis_po_pelnym_okrazeniu():
+def test_station_round_full_lap_tie_on_large_route():
     zlecenia = [0] * 1_000
 
     assert obchod_stacji(zlecenia, 0) == (0, len(zlecenia))

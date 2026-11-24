@@ -4,22 +4,22 @@ from runpy import run_path
 
 import pytest
 
-ostatni_transport = run_path(str(Path(__file__).with_name("solution.py")))["ostatni_transport"]
+ostatni_transport = run_path(str(Path(__file__).with_name("ostatni_transport.py")))["ostatni_transport"]
 
 
 @pytest.mark.parametrize(
     ("weights", "capacity", "expected"),
     [
-        pytest.param([4, 2, 6, 3, 5], 10, 9, id="przyklad-z-tresci"),
-        pytest.param([7, 9], 5, 0, id="wszystkie-za-ciezkie"),
-        pytest.param([], 10, 0, id="pusta-tasma"),
-        pytest.param([3, 5], 0, 0, id="zerowy-udzwig"),
-        pytest.param([5], 5, 5, id="jedna-paczka-rowna-limitowi"),
-        pytest.param([2, 3, 4], 12, 9, id="cala-tasma"),
-        pytest.param([2, 9, 3], 5, 3, id="tylko-spojne-fragmenty"),
-        pytest.param([1, 4, 4], 6, 5, id="usuniecie-kilku-paczek"),
-        pytest.param([1, 10], 5, 1, id="za-ciezka-ostatnia-paczka"),
-        pytest.param([10, 2, 3], 5, 5, id="dokladny-limit-po-ciezkiej-paczce"),
+        pytest.param([4, 2, 6, 3, 5], 10, 9, id="example-from-statement"),
+        pytest.param([7, 9], 5, 0, id="all-packages-too-heavy"),
+        pytest.param([], 10, 0, id="empty-conveyor"),
+        pytest.param([3, 5], 0, 0, id="zero-capacity"),
+        pytest.param([5], 5, 5, id="single-package-at-capacity"),
+        pytest.param([2, 3, 4], 12, 9, id="entire-conveyor"),
+        pytest.param([2, 9, 3], 5, 3, id="only-contiguous-segments"),
+        pytest.param([1, 4, 4], 6, 5, id="remove-several-packages"),
+        pytest.param([1, 10], 5, 1, id="last-package-too-heavy"),
+        pytest.param([10, 2, 3], 5, 5, id="exact-capacity-after-heavy-package"),
     ],
 )
 def test_last_transport_examples(weights, capacity, expected):

@@ -6,7 +6,7 @@ Zadania z dodatkowych zajęć BIT WDI dla studentów pierwszego roku informatyki
 
 1. Otwórz folder zajęć, np. `zaj1`, i wybierz zadanie. W pliku `tresc.md` znajdziesz opis, dane wejściowe, oczekiwany wynik i przykłady.
 2. Zanim napiszesz kod, przejdź przez przykład na kartce. Ustal, co musisz zapamiętywać w trakcie obliczeń, i pomyśl o przypadkach brzegowych.
-3. Uzupełnij funkcję w pliku startowym w folderze zadania. Na przykład w zadaniu **Ostatni transport** uzupełnij `ostatni_transport(masy, udzwig)` w `zaj1/ostatni-transport/solution.py`. Zachowaj nazwę funkcji i jej parametry. Zwróć wynik przez `return`, żeby testy mogły go sprawdzić.
+3. Uzupełnij funkcję w pliku o nazwie zadania w folderze zadania. Na przykład w zadaniu **Ostatni transport** uzupełnij `ostatni_transport(masy, udzwig)` w `zaj1/ostatni-transport/ostatni_transport.py`. Zachowaj nazwę funkcji i jej parametry. Zwróć wynik przez `return`, żeby testy mogły go sprawdzić.
 4. Uruchom testy i popraw rozwiązanie na podstawie przypadków, które się nie powiodły.
 
 ## Przygotowanie środowiska
@@ -55,4 +55,4 @@ Otwórz główny folder repozytorium w PyCharmie. Poniższe kroki wykonasz w IDE
 
 1. W ustawieniach interpretera wybierz **Add Interpreter → Add Local Interpreter** i utwórz środowisko typu **Virtualenv** w folderze `.venv`. Jeśli masz już `.venv`, wybierz istniejący interpreter typu **Python** i wskaż `.venv/bin/python` na macOS lub Linuksie albo `.venv\Scripts\python.exe` na Windowsie. [Konfiguracja interpretera](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html)
 2. Otwórz **View → Tool Windows → Python Packages**, wyszukaj `pytest` i kliknij **Install**. Pakiet zostanie zainstalowany w interpreterze projektu. [Instalacja pytest w PyCharmie](https://www.jetbrains.com/help/pycharm/pytest.html)
-3. Kliknij prawym przyciskiem plik `test_*.py` w folderze wybranego zadania i wybierz opcję **Run** dla tego pliku. Wyniki testów pojawią się w panelu **Run**.
+3. Kliknij prawym przyciskiem plik zadania, na przykład `ostatni_transport.py`, i wybierz **Run**. Plik uruchomi testy przypisane do zadania, a wyniki pojawią się w panelu **Run**.
