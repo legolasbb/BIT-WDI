@@ -55,4 +55,4 @@ Otwórz główny folder repozytorium w PyCharmie. Poniższe kroki wykonasz w IDE
 
 1. W ustawieniach interpretera wybierz **Add Interpreter → Add Local Interpreter** i utwórz środowisko typu **Virtualenv** w folderze `.venv`. Jeśli masz już `.venv`, wybierz istniejący interpreter typu **Python** i wskaż `.venv/bin/python` na macOS lub Linuksie albo `.venv\Scripts\python.exe` na Windowsie. [Konfiguracja interpretera](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html)
 2. Otwórz **View → Tool Windows → Python Packages**, wyszukaj `pytest` i kliknij **Install**. Pakiet zostanie zainstalowany w interpreterze projektu. [Instalacja pytest w PyCharmie](https://www.jetbrains.com/help/pycharm/pytest.html)
-3. Kliknij prawym przyciskiem plik `solution.py` w folderze wybranego zadania i wybierz **Run 'solution'**. Wyniki testów tego zadania pojawią się w panelu **Run**.
+3. Kliknij prawym przyciskiem plik `test_*.py` w folderze wybranego zadania i wybierz opcję **Run** dla tego pliku. Wyniki testów pojawią się w panelu **Run**.
